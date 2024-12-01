@@ -1,0 +1,20 @@
+import { boot } from 'quasar';
+
+export default boot(({ app }) => {
+  const $q = app.config.globalProperties.$q;
+
+  // Add or remove the `dark` class from the body tag
+  const updateDarkClass = () => {
+    if ($q.dark.isActive) {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
+    }
+  };
+
+  // Initialize `dark` class on app load
+  updateDarkClass();
+
+  // Watch for changes in Quasar's dark mode and update the `dark` class
+  $q.dark.onChanged = updateDarkClass;
+});

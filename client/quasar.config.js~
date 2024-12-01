@@ -1,6 +1,5 @@
 const { configure } = require('quasar/wrappers');
-const buildEnv = require('./env.js');
-
+import colors from './env.js';
 
 module.exports = configure(function (/* ctx */) {
   return {
@@ -32,9 +31,6 @@ module.exports = configure(function (/* ctx */) {
       target: {
         browser: [ 'es2019', 'edge88', 'firefox78', 'chrome87', 'safari13.1' ],
         node: 'node20'
-      },
-      env: {
-        config: buildEnv(),
       },
 
       vueRouterMode: 'hash', // available values: 'hash', 'history'
@@ -75,7 +71,7 @@ module.exports = configure(function (/* ctx */) {
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#framework
     framework: {
       config: {
-        brand: buildEnv().colors,
+        brand: colors,
       },
 
       // iconSet: 'material-icons', // Quasar icon set
