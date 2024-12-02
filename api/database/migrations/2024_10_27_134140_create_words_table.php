@@ -13,13 +13,17 @@ return new class extends Migration
     {
         Schema::create('words', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('word_id');
             $table->string('word')->index();
             $table->unsignedBigInteger('language_id');
             $table->unsignedBigInteger('word_category_id');
+            $table->unsignedBigInteger('word_subcategory_id')->nullable();
             $table->timestamps();
 
             $table->foreign('language_id')->references('id')->on('languages')->onDelete('cascade');
             $table->foreign('word_category_id')->references('id')->on('word_categories')->onDelete('cascade');
+            $table->foreign('word_subcategory_id')->references('id')->on('word_subcategories')->onDelete('cascade');
+
         });
     }
 

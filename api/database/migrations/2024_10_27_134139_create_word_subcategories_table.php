@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('languages', function (Blueprint $table) {
+        Schema::create('word_subcategories', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->string('original_name');
+            $table->unsignedBigInteger('word_category_id');
+            $table->timestamps();
+
+            $table->foreign('word_category_id')->references('id')->on('word_categories')->onDelete('cascade');
         });
     }
 
@@ -23,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('languages');
+        Schema::dropIfExists('word_subcategories');
     }
 };
