@@ -13,12 +13,11 @@ return new class extends Migration
     {
         Schema::create('word_subcategories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->unsignedBigInteger('word_category_id');
             $table->timestamps();
 
             $table->foreign('word_category_id')->references('id')->on('word_categories')->onDelete('cascade');
-            $table->unique(['name', 'word_category_id']);
         });
     }
 
